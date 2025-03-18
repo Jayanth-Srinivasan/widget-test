@@ -1,6 +1,15 @@
 (function () {
     alert("Script loaded");
 
+    // Step 1: Load external CSS from CDN
+    const cssHref = "https://cdn.jsdelivr.net/gh/Jayanth-Srinivasan/widget-test@main/widget-style.css";
+    if (!document.querySelector(`link[href="${cssHref}"]`)) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = cssHref;
+        document.head.appendChild(link);
+    }
+
     async function updateDivWithAPI() {
         const targetDiv = document.querySelector(".trigger-div");
         if (!targetDiv) {
@@ -12,11 +21,9 @@
             const response = await fetch("https://official-joke-api.appspot.com/random_joke");
             const data = await response.json();
 
-            const injectedText = `Hello from CDN! Here's a joke:\n${data.setup} — ${data.punchline}`;
+            const injectedText = `Hello from Jay, Here's a joke:\n${data.setup} — ${data.punchline}`;
             
-            targetDiv.style.color = "red";
-            targetDiv.style.fontFamily = "monospace";
-            targetDiv.style.whiteSpace = "pre-line"; 
+            targetDiv.classList.add("joke-text");
             targetDiv.textContent = injectedText;
         } catch (error) {
             console.error("Failed to fetch from API:", error);
