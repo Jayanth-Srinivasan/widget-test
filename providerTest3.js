@@ -1,8 +1,7 @@
 (function () {
     alert("Script loaded");
 
-    // Step 1: Load external CSS from CDN
-    const cssHref = "https://cdn.jsdelivr.net/gh/Jayanth-Srinivasan/widget-test@main/widget-style.css";
+    const cssHref = "https://cdn.jsdelivr.net/gh/Jayanth-Srinivasan/widget-test@refs/heads/main/widget-style.css";
     if (!document.querySelector(`link[href="${cssHref}"]`)) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
@@ -10,7 +9,7 @@
         document.head.appendChild(link);
     }
 
-    async function updateDivWithAPI() {
+    async function widgetDiv() {
         const targetDiv = document.querySelector(".trigger-div");
         if (!targetDiv) {
             console.error("Target div with class 'trigger-div' not found.");
@@ -32,8 +31,8 @@
     }
 
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", updateDivWithAPI);
+        document.addEventListener("DOMContentLoaded", widgetDiv);
     } else {
-        updateDivWithAPI();
+        widgetDiv();
     }
 })();
